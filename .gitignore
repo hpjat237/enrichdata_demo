@@ -1,0 +1,9 @@
+output/
+
+pycache/ *.pyc
+
+spark-warehouse/ metastore_db/ derby.log
+
+*.log *.env
+
+.idea/ .vscode/ *.swp *.swo

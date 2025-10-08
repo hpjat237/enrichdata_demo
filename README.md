@@ -197,16 +197,6 @@ Script `spark_app.py` thực hiện pipeline Real-Time ETL:
    ```
    - Bắt đầu xử lý luồng và giữ stream chạy cho đến khi bị dừng thủ công.
 
-### Lợi ích của Spark SQL và DataFrame
-- **Spark SQL**: Cung cấp cú pháp SQL dễ đọc, giảm sự phức tạp khi viết logic join so với cách tiếp cận thủ công (vòng lặp hoặc map/reduce).
-- **DataFrame**: Cho phép xử lý dữ liệu có cấu trúc, tích hợp mượt mà với Spark SQL và DStream.
-- **LEFT JOIN**: Đảm bảo giữ lại tất cả giao dịch, kể cả khi không có thông tin người dùng tương ứng (giá trị `user_name` và `user_city` sẽ là null).
-
-## Lưu ý
-- **Cổng 9999**: Đảm bảo cổng 9999 không bị chiếm dụng trên máy cục bộ hoặc trong container.
-- **Hiệu năng**: Nếu dữ liệu luồng lớn, có thể cache `static_df` (`static_df.cache()`) để tránh đọc lại file `users.csv` trong mỗi batch.
-- **Mở rộng**: Có thể thay `users.csv` bằng MongoDB hoặc tích hợp Kafka để đọc luồng dữ liệu, như trong các dự án thực tế.
-
 ## Tài liệu tham khảo
 - [Spark Streaming Programming Guide](https://spark.apache.org/docs/latest/streaming-programming-guide.html)
 - [Apache Spark GitHub Examples](https://github.com/apache/spark/tree/master/examples/src/main/python/streaming)

@@ -88,31 +88,24 @@ Mở terminal mới và chạy:
 docker exec -it python-app-demo python /app/data_streamer.py
 ```
 - Output:
-  ```
 <img width="1267" height="580" alt="Screenshot 2025-10-08 213511" src="https://github.com/user-attachments/assets/d4f26535-5340-439e-bbf1-20edd2219969" />
-
-  ```
 
 ### 5. Chạy script Spark
 Mở terminal mới và chạy:
 ```bash
 docker exec -it spark-demo /opt/spark/bin/spark-submit --master local[*] /app/spark_app.py
 ```
-- Kỳ vọng output:
-  ```
-  Static data (users):
+- Output:
 
+  Static data (users):
 <img width="1443" height="391" alt="Screenshot 2025-10-08 213145" src="https://github.com/user-attachments/assets/9164a8a9-b48a-4ec4-bf69-a126764683ce" />
 
   Stream data (transactions):
-
 <img width="1452" height="442" alt="Screenshot 2025-10-08 213419" src="https://github.com/user-attachments/assets/44983a12-e3ad-4d35-96e0-069d1ee68467" />
 
   Enriched data:
-
 <img width="1447" height="380" alt="Screenshot 2025-10-08 213231" src="https://github.com/user-attachments/assets/773db594-e5ad-4bb5-bc17-b8c1f7ea628b" />
 
-  ```
 
 ### 6. Kiểm tra kết quả
 Kiểm tra thư mục `output/`:

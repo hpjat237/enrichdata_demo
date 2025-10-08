@@ -87,11 +87,10 @@ Mở terminal mới và chạy:
 ```bash
 docker exec -it python-app-demo python /app/data_streamer.py
 ```
-- Kỳ vọng output:
+- Output:
   ```
-  Socket server started on port 9999. Waiting for connection...
-  Connected to ('spark-demo', 12345)
-  Sent: txn_1234,1,150.75
+<img width="1267" height="580" alt="Screenshot 2025-10-08 213511" src="https://github.com/user-attachments/assets/d4f26535-5340-439e-bbf1-20edd2219969" />
+
   ```
 
 ### 5. Chạy script Spark
@@ -102,29 +101,17 @@ docker exec -it spark-demo /opt/spark/bin/spark-submit --master local[*] /app/sp
 - Kỳ vọng output:
   ```
   Static data (users):
-  +-------+-------+--------+
-  |user_id|name   |city    |
-  +-------+-------+--------+
-  |1      |Alice  |New York|
-  |2      |Bob    |London  |
-  |3      |Charlie|Paris   |
-  +-------+-------+--------+
+
+<img width="1443" height="391" alt="Screenshot 2025-10-08 213145" src="https://github.com/user-attachments/assets/9164a8a9-b48a-4ec4-bf69-a126764683ce" />
 
   Stream data (transactions):
-  +--------------+-------+------+
-  |transaction_id|user_id|amount|
-  +--------------+-------+------+
-  |txn_1234      |1      |150.75|
-  |txn_5678      |2      |89.50 |
-  +--------------+-------+------+
+
+<img width="1452" height="442" alt="Screenshot 2025-10-08 213419" src="https://github.com/user-attachments/assets/44983a12-e3ad-4d35-96e0-069d1ee68467" />
 
   Enriched data:
-  +--------------+-------+------+-------+--------+
-  |transaction_id|user_id|amount|user_name|user_city|
-  +--------------+-------+------+-------+--------+
-  |txn_1234      |1      |150.75|Alice  |New York|
-  |txn_5678      |2      |89.50 |Bob    |London  |
-  +--------------+-------+------+-------+--------+
+
+<img width="1447" height="380" alt="Screenshot 2025-10-08 213231" src="https://github.com/user-attachments/assets/773db594-e5ad-4bb5-bc17-b8c1f7ea628b" />
+
   ```
 
 ### 6. Kiểm tra kết quả

@@ -87,45 +87,25 @@ Mở terminal mới và chạy:
 ```bash
 docker exec -it python-app-demo python /app/data_streamer.py
 ```
-- Kỳ vọng output:
-  ```
-  Socket server started on port 9999. Waiting for connection...
-  Connected to ('spark-demo', 12345)
-  Sent: txn_1234,1,150.75
-  ```
+- Output:
+<img width="1267" height="580" alt="Screenshot 2025-10-08 213511" src="https://github.com/user-attachments/assets/d4f26535-5340-439e-bbf1-20edd2219969" />
 
 ### 5. Chạy script Spark
 Mở terminal mới và chạy:
 ```bash
 docker exec -it spark-demo /opt/spark/bin/spark-submit --master local[*] /app/spark_app.py
 ```
-- Kỳ vọng output:
-  ```
+- Output:
+
   Static data (users):
-  +-------+-------+--------+
-  |user_id|name   |city    |
-  +-------+-------+--------+
-  |1      |Alice  |New York|
-  |2      |Bob    |London  |
-  |3      |Charlie|Paris   |
-  +-------+-------+--------+
+<img width="1443" height="391" alt="Screenshot 2025-10-08 213145" src="https://github.com/user-attachments/assets/9164a8a9-b48a-4ec4-bf69-a126764683ce" />
 
   Stream data (transactions):
-  +--------------+-------+------+
-  |transaction_id|user_id|amount|
-  +--------------+-------+------+
-  |txn_1234      |1      |150.75|
-  |txn_5678      |2      |89.50 |
-  +--------------+-------+------+
+<img width="1452" height="442" alt="Screenshot 2025-10-08 213419" src="https://github.com/user-attachments/assets/44983a12-e3ad-4d35-96e0-069d1ee68467" />
 
   Enriched data:
-  +--------------+-------+------+-------+--------+
-  |transaction_id|user_id|amount|user_name|user_city|
-  +--------------+-------+------+-------+--------+
-  |txn_1234      |1      |150.75|Alice  |New York|
-  |txn_5678      |2      |89.50 |Bob    |London  |
-  +--------------+-------+------+-------+--------+
-  ```
+<img width="1447" height="380" alt="Screenshot 2025-10-08 213231" src="https://github.com/user-attachments/assets/773db594-e5ad-4bb5-bc17-b8c1f7ea628b" />
+
 
 ### 6. Kiểm tra kết quả
 Kiểm tra thư mục `output/`:
@@ -216,16 +196,6 @@ Script `spark_app.py` thực hiện pipeline Real-Time ETL:
    ssc.awaitTermination()
    ```
    - Bắt đầu xử lý luồng và giữ stream chạy cho đến khi bị dừng thủ công.
-
-### Lợi ích của Spark SQL và DataFrame
-- **Spark SQL**: Cung cấp cú pháp SQL dễ đọc, giảm sự phức tạp khi viết logic join so với cách tiếp cận thủ công (vòng lặp hoặc map/reduce).
-- **DataFrame**: Cho phép xử lý dữ liệu có cấu trúc, tích hợp mượt mà với Spark SQL và DStream.
-- **LEFT JOIN**: Đảm bảo giữ lại tất cả giao dịch, kể cả khi không có thông tin người dùng tương ứng (giá trị `user_name` và `user_city` sẽ là null).
-
-## Lưu ý
-- **Cổng 9999**: Đảm bảo cổng 9999 không bị chiếm dụng trên máy cục bộ hoặc trong container.
-- **Hiệu năng**: Nếu dữ liệu luồng lớn, có thể cache `static_df` (`static_df.cache()`) để tránh đọc lại file `users.csv` trong mỗi batch.
-- **Mở rộng**: Có thể thay `users.csv` bằng MongoDB hoặc tích hợp Kafka để đọc luồng dữ liệu, như trong các dự án thực tế.
 
 ## Tài liệu tham khảo
 - [Spark Streaming Programming Guide](https://spark.apache.org/docs/latest/streaming-programming-guide.html)
